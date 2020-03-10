@@ -1,5 +1,13 @@
 [[package]]
 category = "main"
+description = "Composable command line interface toolkit"
+name = "click"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "7.1.1"
+
+[[package]]
+category = "main"
 description = "The Cython compiler for writing C extensions for the Python language."
 name = "cython"
 optional = false
@@ -186,10 +194,14 @@ version = "4.43.0"
 dev = ["py-make (>=0.1.0)", "twine", "argopt", "pydoc-markdown"]
 
 [metadata]
-content-hash = "6d20cbe242b86d9babbbc45cfbbe85bb6275f75735bdaa01aad0c3b984ef56e6"
+content-hash = "0b95d292249a7559abb70738b648744cd73e2843caa1b4ade39ce23b99f249fb"
 python-versions = "^3.6"
 
 [metadata.files]
+click = [
+    {file = "click-7.1.1-py2.py3-none-any.whl", hash = "sha256:e345d143d80bf5ee7534056164e5e112ea5e22716bbb1ce727941f4c8b471b9a"},
+    {file = "click-7.1.1.tar.gz", hash = "sha256:8a18b4ea89d8820c5d0c7da8a64b2c324b4dabb695804dbfea19b9be9d88c0cc"},
+]
 cython = [
     {file = "Cython-0.29.15-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:1dc973bdea03c65f03f41517e4f0fc2b717d71cfbcf4ec34adac7e5bee71303e"},
     {file = "Cython-0.29.15-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:214a53257c100e93e7673e95ab448d287a37626a3902e498025993cc633647ae"},
