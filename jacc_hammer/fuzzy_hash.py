@@ -24,8 +24,8 @@ from Levenshtein import ratio
 from nltk import ngrams
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
-import mi_scotland
-from mi_scotland.fuzzy_hash import MinHashLSHHybrid
+import im_minerva
+from im_minerva.fuzzy_hash import MinHashLSHHybrid
 
 NUM_THREADS = "4"
 os.environ["OMP_NUM_THREADS"] = NUM_THREADS
@@ -719,15 +719,15 @@ def match_names_stream(
 
 
 if __name__ == "__main__":
-    logger = logging.getLogger("mi_scotland")
-    debug_file = f"{mi_scotland.project_dir}/debug.log"
+    logger = logging.getLogger("im_minerva")
+    debug_file = f"{im_minerva.project_dir}/debug.log"
     dbg = logging.FileHandler(debug_file)
     dbg.setLevel(logging.DEBUG)
     logger.handlers.append(dbg)
     logger.handlers[0].setLevel(logging.INFO)
     logger.setLevel(logging.DEBUG)
 
-    project_dir = mi_scotland.project_dir
+    project_dir = im_minerva.project_dir
 
     nrows = 1000
     overlap = 800

@@ -1,5 +1,5 @@
 from datasketch import MinHashLSH
-import mi_scotland
+import im_minerva
 import logging
 
 logger = logging.getLogger(__name__)

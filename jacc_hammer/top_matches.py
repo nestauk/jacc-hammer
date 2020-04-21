@@ -17,8 +17,8 @@ import psutil
 import tqdm
 from toolz.curried import curry, do, map, pipe
 
-import mi_scotland
-from mi_scotland.utils.pandas import preview
+import im_minerva
+from im_minerva.utils.pandas import preview
 
 logger = logging.getLogger(__name__)
 
@@ -69,7 +69,12 @@ def get_top_matches_chunked(match_fin, chunksize, stop=None, tmp_dir="/tmp"):
         map_ = map
         map_ = curry(p.imap)
         return pipe(
-            pd.read_hdf(match_fin, stop=stop, chunksize=chunksize, columns=["x", "y", "sim_mean"]),
+            pd.read_hdf(
+                match_fin,
+                stop=stop,
+                chunksize=chunksize,
+                columns=["x", "y", "sim_mean"],
+            ),
             enumerate,
             pbar,
             map_(chunk_row(tmp_dir=tmp_dir)),
@@ -80,8 +85,8 @@ def get_top_matches_chunked(match_fin, chunksize, stop=None, tmp_dir="/tmp"):
 
 
 if __name__ == "__main__":
-    logger = logging.getLogger("mi_scotland")
-    debug_file = f"{mi_scotland.project_dir}/debug.log"
+    logger = logging.getLogger("im_minerva")
+    debug_file = f"{im_minerva.project_dir}/debug.log"
     dbg = logging.FileHandler(debug_file)
     dbg.setLevel(logging.DEBUG)
     logger.handlers.append(dbg)
@@ -98,7 +103,7 @@ if __name__ == "__main__":
         stop = 100_000
         chunksize = int(5e4)
 
-    project_dir = mi_scotland.project_dir
+    project_dir = im_minerva.project_dir
 
     # Load glass (y) and ch (x) names
     name_x_fin, name_y_fin = (
@@ -114,3 +119,4 @@ if __name__ == "__main__":
         .merge(names_y(), left_on="y", right_index=True, validate="1:1")
         .merge(names_x(), left_on="x", right_index=True, validate="m:1")
     )
+
