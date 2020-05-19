@@ -672,6 +672,7 @@ def match_names_stream(
 ) -> iter:
     """ """
 
+    names = list(map(list, names))
     # Automatically deal with stream to/from buffer
     main_cos_ = np_buffer(main_cos, f"{tmp_dir}/cos_stream")
     main_fuzzy_ = np_buffer(main_fuzzy, f"{tmp_dir}/fuzzy_stream")
