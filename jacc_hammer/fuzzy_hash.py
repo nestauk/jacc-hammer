@@ -1,4 +1,5 @@
 import gc
+from tempfile import gettempdir
 import logging
 import os
 import uuid
@@ -33,6 +34,7 @@ os.environ["OPENBLAS_NUM_THREADS"] = NUM_THREADS
 os.environ["MKL_NUM_THREADS"] = NUM_THREADS
 os.environ["VECLIB_MAXIMUM_THREADS"] = NUM_THREADS
 os.environ["NUMEXPR_NUM_THREADS"] = NUM_THREADS
+TMP_DIR = gettempdir()
 
 
 logger = logging.getLogger(__name__)
@@ -620,19 +622,13 @@ def np_buffer(fun: Callable, path: str) -> Callable:
 
 def match_names(
     names: list,
-    tmp_dir: str = "/tmp",
-    identifier: str = None,
+    tmp_dir: str = TMP_DIR,
     chunksize: int = 10000,
     threshold: int = None,
     cos_config: Cos_config = Cos_config(),
     fuzzy_config: Fuzzy_config = Fuzzy_config(),
 ) -> pd.DataFrame:
     """ """
-    if identifier is None:
-        # Short unique identifier
-        identifier = uuid4().hex[:8]
-    tmp_dir = str(Path(tmp_dir) / f"FM_{identifier}")
-    os.makedirs(tmp_dir, exist_ok=True)
 
     fout_Xs = f"{tmp_dir}/cos_tfidf_cache"
 
@@ -668,19 +664,13 @@ def match_names(
 
 def match_names_stream(
     names: list,
-    tmp_dir: str = "/tmp",
-    identifier: str = None,
+    tmp_dir: str = TMP_DIR,
     chunksize: int = 10000,
     threshold: int = None,
     cos_config: Cos_config = Cos_config(),
     fuzzy_config: Fuzzy_config = Fuzzy_config(),
 ) -> iter:
     """ """
-    if identifier is None:
-        # Short unique identifier
-        identifier = uuid4().hex[:8]
-    tmp_dir = str(Path(tmp_dir) / f"FM_{identifier}")
-    os.makedirs(tmp_dir, exist_ok=True)
 
     # Automatically deal with stream to/from buffer
     main_cos_ = np_buffer(main_cos, f"{tmp_dir}/cos_stream")
