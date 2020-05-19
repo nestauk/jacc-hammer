@@ -1,8 +1,9 @@
 from setuptools import setup
-from jacc_hammer import __version__
 
 with open("requirements.txt") as f:
     requirements = f.read().splitlines()
+
+exec(open('jacc_hammer/version.py').read())
 
 setup(
     name="jacc-hammer",

@@ -1,5 +1,4 @@
-__version__ = "0.0.0"
-
+from .version import __version__
 from .lshhybrid import MinHashLSHHybrid
 from .fuzzy_hash import *
 from .top_matches import *
