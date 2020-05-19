@@ -561,20 +561,26 @@ def match_chunk_to_df(
 
 def stream_sim_chunks_to_hdf(out: iter, fout: str) -> str:
     """ Stream an iterable of dataframes to hdf """
+
+    fout_progress = fout + '.progress'
+    if os.path.exists(fout):
+        logger.info(f"Returning cached file: {fout}")
+        return fout
+
     # Initialise HDF dataframe
     head, out = peek(out)
     columns = head.columns
     logger.debug(f"Initialising file: {fout}")
     (
         pd.DataFrame([], columns=columns).to_hdf(
-            fout, format="table", append=True, mode="w", key="matches"
+            fout_progress, format="table", append=True, mode="w", key="matches"
         )
     )
 
     # Output chunk
     list(
         chunk.pipe(do(lambda x: logger.debug(f"saving {x.shape[0]}"))).to_hdf(
-            fout,
+            fout_progress,
             format="table",
             append=True,
             mode="a",
@@ -583,6 +589,9 @@ def stream_sim_chunks_to_hdf(out: iter, fout: str) -> str:
         )
         for chunk in out
     )
+
+    os.rename(fout_progress, fout)
+
     return fout
 
 
