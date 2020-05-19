@@ -705,8 +705,8 @@ def match_names_stream(
             curry(starmap, np.union1d),
         )
 
-        cos_scorer_ = curry(cos_scorer, joblib.load(fout_Xs))
-        scorers = {"sim_ratio": ratio_wrap, "sim_jacc": mh_jacc, "sim_cos": cos_scorer_}
+    cos_scorer_ = curry(cos_scorer, joblib.load(fout_Xs))
+    scorers = {"sim_ratio": ratio_wrap, "sim_jacc": mh_jacc, "sim_cos": cos_scorer_}
 
     return pipe(
         X,
