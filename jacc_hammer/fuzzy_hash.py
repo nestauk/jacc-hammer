@@ -1,15 +1,19 @@
+"""
+TODO character level cosine
+TODO transformers for distribution of similarities?
+TODO rename "x" and "y":
+     - "y" are the names that are minhash-LSH'ed;
+     - "x" are the names that are 'queried'.
+"""
 import gc
 from tempfile import gettempdir
 import logging
 import os
-import uuid
 from functools import wraps
 from hashlib import sha1
 from itertools import chain, repeat, starmap
 from multiprocessing import Pool
-from pathlib import Path
 from typing import Any, BinaryIO, Callable, NamedTuple, Optional, Tuple
-from uuid import uuid4
 
 import joblib
 import numpy as np
@@ -25,8 +29,7 @@ from Levenshtein import ratio
 from nltk import ngrams
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
-import im_minerva
-from im_minerva.fuzzy_hash import MinHashLSHHybrid
+from jacc_hammer.lshhybrid import MinHashLSHHybrid
 
 NUM_THREADS = "4"
 os.environ["OMP_NUM_THREADS"] = NUM_THREADS
