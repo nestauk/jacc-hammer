@@ -31,14 +31,14 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 from jacc_hammer.lshhybrid import MinHashLSHHybrid
 
-NUM_THREADS = "4"
-os.environ["OMP_NUM_THREADS"] = NUM_THREADS
-os.environ["OPENBLAS_NUM_THREADS"] = NUM_THREADS
-os.environ["MKL_NUM_THREADS"] = NUM_THREADS
-os.environ["VECLIB_MAXIMUM_THREADS"] = NUM_THREADS
-os.environ["NUMEXPR_NUM_THREADS"] = NUM_THREADS
-TMP_DIR = gettempdir()
+NUM_THREADS = psutil.cpu_count(logical=False)
+os.environ["OMP_NUM_THREADS"] = str(NUM_THREADS)
+os.environ["OPENBLAS_NUM_THREADS"] = str(NUM_THREADS)
+os.environ["MKL_NUM_THREADS"] = str(NUM_THREADS)
+os.environ["VECLIB_MAXIMUM_THREADS"] = str(NUM_THREADS)
+os.environ["NUMEXPR_NUM_THREADS"] = str(NUM_THREADS)
 
+TMP_DIR = gettempdir()
 
 logger = logging.getLogger(__name__)
 
@@ -639,12 +639,12 @@ def match_names(
     threshold: int = None,
     cos_config: Cos_config = Cos_config(),
     fuzzy_config: Fuzzy_config = Fuzzy_config(),
+    n_jobs: int = NUM_THREADS,
 ) -> pd.DataFrame:
     """ """
 
     fout_Xs = f"{tmp_dir}/cos_tfidf_cache"
 
-    n_jobs = psutil.cpu_count(logical=False)
     with Pool(n_jobs) as p:
         map_ = curry(p.imap)
         X = pipe(
@@ -681,6 +681,7 @@ def match_names_stream(
     threshold: int = None,
     cos_config: Cos_config = Cos_config(),
     fuzzy_config: Fuzzy_config = Fuzzy_config(),
+    n_jobs: int = NUM_THREADS,
 ) -> iter:
     """ """
 
@@ -691,7 +692,6 @@ def match_names_stream(
 
     fout_Xs = f"{tmp_dir}/cos_tfidf_cache"
 
-    n_jobs = psutil.cpu_count(logical=False)
     with Pool(n_jobs) as p:
         map_ = curry(p.imap)
 
