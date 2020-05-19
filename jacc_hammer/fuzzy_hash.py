@@ -385,7 +385,7 @@ def minhash(name, num_perm, hashobj, n_bytes, k):
     Returns:
         datasketch.MinHash
     """
-    minhash = MinHash(num_perm=num_perm, hashobj=hashobj, n_bytes=n_bytes)
+    minhash = MinHash(num_perm=num_perm, hashobj=hashobj)  # , n_bytes=n_bytes)  # XXX
     for d in ngrams(name, k):
         minhash.update("".join(d).encode("utf-8"))
 

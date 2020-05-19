@@ -1,6 +1,5 @@
 pandas
 fuzzywuzzy
-im_minerva.egg
 scipy
 tqdm
 datasketch
