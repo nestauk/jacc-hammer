@@ -1,1 +1,17 @@
+pandas
+fuzzywuzzy
+im_minerva.egg
+scipy
+tqdm
+datasketch
+cytoolz
 numpy
+psutil
+toolz
+joblib
+nltk
+h5py
+python_Levenshtein
+scikit_learn
+datasketch
+# git+git://github.com/bishax/datasketch.git@398682444db31b50b1617e7cc7765c4cbd949b11#egg=datasketch
