@@ -17,8 +17,8 @@ import psutil
 import tqdm
 from toolz.curried import curry, do, map, pipe
 
-import im_minerva
-from im_minerva.utils.pandas import preview
+# import im_minerva
+# from im_minerva.utils.pandas import preview
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ def _get_top_matches(df):
     return (
         df.reset_index(drop=True)
         .pipe(lambda x: x.loc[x.groupby("y").sim_mean.idxmax().values])
-        .pipe(preview)
+        # .pipe(preview)
     )
 
 

@@ -1,5 +1,4 @@
 from datasketch import MinHashLSH
-import im_minerva
 import logging
 
 logger = logging.getLogger(__name__)
