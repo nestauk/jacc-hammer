@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "jacc-hammer"
-version = "0.0.0"
+version = "0.0.1"
 description = "Python library for fuzzy matching large data sets."
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/nestauk/jacc-hammer"
 repository = "https://github.com/nestauk/jacc-hammer"
 authors = ["bishax <alex.bishop@nesta.org.uk>"]
-documentation = "https://jacc-hammer.readthedocs.io"
+documentation = "https://nesta-jacc-hammer.readthedocs-hosted.com/en/latest/?badge=latest"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
