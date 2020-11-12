@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jacc-hammer"
-version = "0.0.0"
+version = "0.0.1"
 description = "Python library for fuzzy matching large data sets."
 license = "MIT"
 readme = "README.md"
