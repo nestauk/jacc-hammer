@@ -1,0 +1,3 @@
+[darglint]
+# Accept one-liners
+strictness = short
