@@ -7,6 +7,7 @@ readme = "README.md"
 homepage = "https://github.com/nestauk/jacc-hammer"
 repository = "https://github.com/nestauk/jacc-hammer"
 authors = ["bishax <alex.bishop@nesta.org.uk>"]
+documentation = "https://jacc-hammer.readthedocs.io"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
